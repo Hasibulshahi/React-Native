@@ -4,27 +4,27 @@
     "title": "Melaka Sultanate Palace Museum",
     "visited": true,
     "description": "Melaka Sultanate Palace, located at the foot of St. Paul’s Hill, is a replica of the 15th-century palace of Sultan Mansur Shah. Also known as Muzium Kebudayaan or the Cultural Museum, it is now converted into a museum of Malay Sultanate's heritage and history. The three-story Melaka Sultanate Palace Museum is divided into eight chambers with traditional costume, art, weaponry, jewellery and other artefacts on display.",
-    "image": "https://raw.githubusercontent.com/Hasibulshahi/React-Native/main/HistoricalPlacesListApp/assets/images/malaka%20palace%20museum.png"
+    "imageLink": "https://raw.githubusercontent.com/Hasibulshahi/React-Native/main/HistoricalPlacesListApp/assets/images/malaka%20palace%20museum.png"
   },
   {
     "id": 2,
     "title": "A'Famosa",
     "visited": true,
     "description": "A former Portuguese Fortress, A Famosa is among the oldest surviving European architectural remains in Southeast Asia. One of Malacca's famous sightseeing spots, the only remaining part of the fortress is a small gate house, known as Porta de Santiago.",
-    "image": "https://raw.githubusercontent.com/Hasibulshahi/React-Native/main/HistoricalPlacesListApp/assets/images/afamosa.png"
+    "imageLink": "https://raw.githubusercontent.com/Hasibulshahi/React-Native/main/HistoricalPlacesListApp/assets/images/afamosa.png"
   },
   {
     "id": 3,
     "title": "Fort Cornwallis Penang",
     "visited": false,
     "description": "Located at Jalan Tun Syed Sheh Barakbah, Fort Cornwallis (Kota Cornwallis in Malay) is one of the most important structures in George Town, Penang. It is the largest intact standing fort in Malaysia which was built for defending Penang from pirate attacks. Named after Charles Marquis Cornwallis, the Governor General of Bengal, the design of Fort Cornwallis is very much like that of other British forts in India.",
-    "image": "https://raw.githubusercontent.com/Hasibulshahi/React-Native/main/HistoricalPlacesListApp/assets/images/Fort%20Cornwallis%20Penang.png"
+    "imageLink": "https://raw.githubusercontent.com/Hasibulshahi/React-Native/main/HistoricalPlacesListApp/assets/images/Fort%20Cornwallis%20Penang.png"
   },
   {
     "id": 4,
     "title": "Penang Snake Temple",
     "visited": true,
     "description": "The Penang Snake Temple, earlier known as Temple of the Azure Cloud, is a Chinese temple built in remembrance of Chor Soo Kong, a Buddhist priest and healer. Located in Bayan Lepas in the Southwest Penang, this magical temple is one of the few places where one can get close to the venomous snakes and live to tell the tale.",
-    "image": "https://raw.githubusercontent.com/Hasibulshahi/React-Native/main/HistoricalPlacesListApp/assets/images/Penang%20Snake%20Temple.png"
+    "imageLink": "https://raw.githubusercontent.com/Hasibulshahi/React-Native/main/HistoricalPlacesListApp/assets/images/Penang%20Snake%20Temple.png"
   }
 ]
