@@ -9,9 +9,8 @@ import { ItemDetailsScreen } from './src/screens/ItemDetailsScreen';
 import { SuggestionScreen } from './src/screens/SuggestionScreen';
 import { NotVisitedScreen } from './src/screens/NotVisitedScreen';
 import { SettingsScreen } from './src/screens/SettingsScreen';
-import { PersistGate } from 'redux-persist/integration/react';
 import { Provider } from 'react-redux';
-import store, { persistor } from './src/viewmodels/redux_scripts/store';
+import store from './src/viewmodels/redux_scripts/store';
 
 const Tab = createBottomTabNavigator();
 const HomeStack = createNativeStackNavigator();
@@ -60,8 +59,7 @@ const linking = {
 export default function App() {
   return (
     <Provider store={store}>
-      <PersistGate loading={null} persistor={persistor}>
-        <SafeAreaView style={styles.container}>
+      <SafeAreaView style={styles.container}>
           <AppHeader />
           <NavigationContainer linking = {linking}>
             <Tab.Navigator
@@ -108,7 +106,6 @@ export default function App() {
             </Tab.Navigator>
           </NavigationContainer>
         </SafeAreaView>
-      </PersistGate>
     </Provider>    
   );
 }
