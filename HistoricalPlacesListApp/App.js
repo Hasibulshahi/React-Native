@@ -32,11 +32,33 @@ function SuggestionStackNavigator() {
   );
 }
 
+const linking = {
+  prefixes: ['myapp://'],
+  config: {
+    screens: {
+      Home: {
+        screens: {
+          HomeScreen: 'home',
+          ItemDetails: 'item/:id',
+        },
+      },
+      Suggestion: {
+        screens: {
+          SuggestionScreen: 'suggestion',
+          ItemDetails: 'item/:id',
+        },
+      },
+      NotVisited: 'not-visited',
+      Settings: 'settings',
+    },
+  },
+};
+
 export default function App() {
   return (
     <SafeAreaView style={styles.container}>
       <AppHeader />
-      <NavigationContainer>
+      <NavigationContainer linking = {linking}>
         <Tab.Navigator
           screenOptions={{
             headerShown: false,
