@@ -1,33 +1,43 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, StyleSheet, Image, TouchableOpacity, Text } from 'react-native';
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchPlaces } from '../viewmodels/redux_scripts/placesSlice';
 import { ItemListView } from '../views/ItemListView';
-import places from '../places.json'; // Import your places.json file
 
 export const HomeScreen = ({ navigation }) => {
   const [randomPlace, setRandomPlace] = useState(null);
+  const dispatch = useDispatch();
+  const { items, isLoading } = useSelector((state) => state.places);
 
   useEffect(() => {
-    // Function to set a random place
+    if (items.length === 0) {
+      dispatch(fetchPlaces()); // Only fetch if items are not available in Redux state
+    }
+  }, [dispatch, items]);
+
+  useEffect(() => {
     const changeRandomPlace = () => {
-      const randomIndex = Math.floor(Math.random() * places.length);
-      setRandomPlace(places[randomIndex]);
+      if (items.length > 0) {
+        const randomIndex = Math.floor(Math.random() * items.length);
+        setRandomPlace(items[randomIndex]);
+      }
     };
 
-    // Set initial random place
     changeRandomPlace();
-
-    // Set interval to change the image every 5 seconds
     const interval = setInterval(changeRandomPlace, 5000);
 
-    // Cleanup interval on component unmount
     return () => clearInterval(interval);
-  }, []);
+  }, [items]);
 
   const handleImageClick = () => {
     if (randomPlace) {
       navigation.navigate('ItemDetails', { item: randomPlace });
     }
   };
+
+  if (isLoading) {
+    return <Text style={styles.loadingText}>Loading...</Text>;
+  }
 
   return (
     <View style={styles.container}>
@@ -41,7 +51,7 @@ export const HomeScreen = ({ navigation }) => {
           />
         </TouchableOpacity>
       )}
-      <ItemListView navigation={navigation} />
+      <ItemListView navigation={navigation} items={items} />
     </View>
   );
 };
@@ -57,7 +67,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     marginTop: 5,
     paddingLeft: 10,
-    paddingRight: 10
+    paddingRight: 10,
   },
   image: {
     width: '100%',
@@ -71,4 +81,11 @@ const styles = StyleSheet.create({
     color: '#333',
     marginLeft: 10,
   },
+  loadingText: {
+    textAlign: 'center',
+    marginTop: 20,
+    fontSize: 16,
+    color: '#888',
+  },
 });
+
