@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, FlatList, StyleSheet, Text, ActivityIndicator, TouchableOpacity } from 'react-native';
 import { ItemCard } from '../components/ItemCard'; 
-import { useItemViewModel } from '../viewmodels/ItemViewModel';
+import { useItemViewModel } from '../viewmodels/SuggestionViewModel';
 
 export const ItemListView = ({ navigation }) => {
   const { items, isLoading, toggleVisited } = useItemViewModel();

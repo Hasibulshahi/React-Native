@@ -6,12 +6,13 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { AppHeader } from './src/components/AppHeader';
 import { HomeScreen } from './src/screens/HomeScreen';
 import { ItemDetailsScreen } from './src/screens/ItemDetailsScreen';
-import { VisitedScreen } from './src/screens/VisitedScreen';
+import { SuggestionScreen } from './src/screens/SuggestionScreen';
 import { NotVisitedScreen } from './src/screens/NotVisitedScreen';
 import { SettingsScreen } from './src/screens/SettingsScreen';
 
 const Tab = createBottomTabNavigator();
 const HomeStack = createNativeStackNavigator();
+const SuggestionStack = createNativeStackNavigator();
 
 function HomeStackNavigator() {
   return (
@@ -19,6 +20,15 @@ function HomeStackNavigator() {
       <HomeStack.Screen name="HomeScreen" component={HomeScreen} options={{ headerShown: false }} />
       <HomeStack.Screen name="ItemDetails" component={ItemDetailsScreen} options={{ title: 'Item Details' }} />
     </HomeStack.Navigator>
+  );
+}
+
+function SuggestionStackNavigator() {
+  return (
+    <SuggestionStack.Navigator>
+      <SuggestionStack.Screen name="SuggestionScreen" component={SuggestionScreen} options={{ headerShown: false }} />
+      <SuggestionStack.Screen name="ItemDetails" component={ItemDetailsScreen} options={{ title: 'Item Details' }} />
+    </SuggestionStack.Navigator>
   );
 }
 
@@ -39,8 +49,33 @@ export default function App() {
             },
           }}
         >
-          <Tab.Screen name="Home" component={HomeStackNavigator} />
-          <Tab.Screen name="Visited" component={VisitedScreen} />
+          <Tab.Screen
+            name="Home"
+            component={HomeStackNavigator}
+            listeners={({ navigation }) => ({
+              tabPress: (e) => {
+                e.preventDefault(); // Prevent default behavior
+                navigation.reset({
+                  index: 0,
+                  routes: [{ name: 'Home' }], // Reset to the HomeStackNavigator root
+                });
+              },
+            })}
+          />
+
+          <Tab.Screen
+            name="Suggestion"
+            component={SuggestionStackNavigator}
+            listeners={({ navigation }) => ({
+              tabPress: (e) => {
+                e.preventDefault(); // Prevent default behavior
+                navigation.reset({
+                  index: 0,
+                  routes: [{ name: 'Suggestion' }], // Reset to the root of the SuggestionStackNavigator
+                });
+              },
+            })}
+          />
           <Tab.Screen name="Not Visited" component={NotVisitedScreen} />
           <Tab.Screen name="Settings" component={SettingsScreen} />
         </Tab.Navigator>

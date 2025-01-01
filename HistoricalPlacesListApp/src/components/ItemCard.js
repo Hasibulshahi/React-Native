@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, Switch } from 'react-native';
+import { View, Text, StyleSheet, Switch, Image } from 'react-native';
 
 export const ItemCard = ({ item, onToggleVisited }) => {
   const toggleSwitch = () => {
@@ -8,9 +8,15 @@ export const ItemCard = ({ item, onToggleVisited }) => {
 
   return (
     <View style={styles.card}>
-      <View style={styles.textContainer}>
-        <Text style={styles.title}>{item.title}</Text>
-        <Text style={styles.description}>{item.description}</Text>
+      <View style={styles.imageContainer}>
+        <Image 
+          source={{ uri: item.imageLink }} 
+          style={styles.image} 
+          resizeMode="cover" 
+        />
+        <Text style={styles.title} numberOfLines={1}>
+          {item.title}
+        </Text>
       </View>
       <View style={styles.switchContainer}>
         <Text style={styles.label}>Visited</Text>
@@ -40,17 +46,27 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
     elevation: 2,
   },
-  textContainer: {
-    flex: 1,
+  imageContainer: {
+    alignItems: 'flex-start',
     marginRight: 10,
   },
-  title: {
-    fontSize: 18,
-    fontWeight: 'bold',
+  image: {
+    width: 50, // Adjust the width as needed
+    height: 50, // Adjust the height as needed
+    borderRadius: 4,
   },
-  description: {
-    fontSize: 14,
-    color: '#555',
+  title: {
+    fontSize: 12,
+    fontWeight: 'bold',
+    marginTop: 8,
+    textAlign: 'left',
+    color: '#333',
+  },
+  switchContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  label: {
+    marginRight: 8,
   },
 });
-

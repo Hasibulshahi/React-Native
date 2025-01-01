@@ -6,8 +6,12 @@ export const ItemDetailsScreen = ({ route, navigation }) => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>{item.title}</Text>
-
+      <View style={styles.topContainerLeft}>
+        <Text style={styles.title}>{item.title}</Text>
+        <Text style={styles.visitedStatus}> 
+          Visited: {item.visited ? 'Yes' : 'No'}
+        </Text>
+      </View>
       {/* Add Image component with additional debugging */}
       {item.imageLink ? (
         <Image
@@ -21,46 +25,49 @@ export const ItemDetailsScreen = ({ route, navigation }) => {
       )}
 
       <Text style={styles.description}>{item.description}</Text>
-      <Text style={styles.visitedStatus}>
-        Visited: {item.visited ? 'Yes' : 'No'}
-      </Text>
+      
 
-      <Button title="Back" onPress={() => navigation.goBack()} />
+      {/* <Button title="Back" onPress={() => navigation.goBack()} /> */}
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flexDirection: 'column',
     justifyContent: 'flex-start',
-    alignItems: 'center',
     padding: 5,
   },
   title: {
-    fontSize: 24,
+    fontSize: 16,
     fontWeight: 'bold',
     marginBottom: 8,
+    textAlign: 'left'
   },
   description: {
     fontSize: 16,
     color: '#555',
-    marginBottom: 16,
   },
   visitedStatus: {
     fontSize: 16,
     fontWeight: 'bold',
     color: '#6200EE',
-    marginBottom: 16,
+    marginBottom: 5,
   },
   image: {
-    width: 300, // Adjust the size to fit your layout
-    height: 200,
-    marginBottom: 16,
+    width: 350, // Adjust the size to fit your layout
+    height: 250,
   },
   noImageText: {
     fontSize: 16,
     color: 'gray',
     marginBottom: 16,
+  },
+  topContainerLeft: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingLeft: 5,
+    paddingRight: 5
   },
 });
