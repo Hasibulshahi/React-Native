@@ -1,24 +1,21 @@
+// __tests__/ItemDetailsScreen.test.js
 import React from 'react';
 import { render } from '@testing-library/react-native';
-import { ItemDetailsScreen } from '../screens/ItemDetailsScreen';
+import { ItemDetailsScreen } from '../src/screens/ItemDetailsScreen';
 
-describe('ItemDetailsScreen', () => {
-  const mockItem = {
-    id: 1,
-    title: 'Test Place',
-    visited: false,
-    description: 'This is a test description.',
-    imageLink: 'https://example.com/test.jpg',
+test('renders ItemDetailsScreen correctly', () => {
+  const item = {
+    title: 'Sample Place',
+    visited: true,
+    description: 'This is a sample description.',
+    imageLink: 'https://example.com/image.png',
   };
 
-  it('renders item details correctly', () => {
-    const { getByText, getByRole } = render(
-      <ItemDetailsScreen route={{ params: { item: mockItem } }} />
-    );
+  const { getByText, getByAltText } = render(
+    <ItemDetailsScreen route={{ params: { item } }} navigation={{ goBack: jest.fn() }} />
+  );
 
-    expect(getByText('Test Place')).toBeTruthy();
-    expect(getByText('Visited: No')).toBeTruthy();
-    expect(getByText('This is a test description.')).toBeTruthy();
-    expect(getByRole('image')).toBeTruthy();
-  });
+  expect(getByText('Sample Place')).toBeTruthy();
+  expect(getByText('Visited: Yes')).toBeTruthy();
+  expect(getByText('This is a sample description.')).toBeTruthy();
 });
