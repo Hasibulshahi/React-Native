@@ -108,4 +108,109 @@ The "Visited Places" feature allows users to mark places as visited or unvisited
       dispatch(fetchPlaces());
     }
   }, [dispatch, items]);
+```
+# How Redux Works Together
 
+## Data Fetching
+
+- `fetchPlaces` is dispatched when the `items` array is empty.
+- The `items` state is populated with data fetched from the API response.
+
+## State Updates
+
+- The `toggleVisited` action updates the `visited` property of a specific place in the `items` array.
+
+## Cross-Screen Consistency
+
+- Both `HomeScreen` and `SuggestionScreen` read from the same Redux state.
+- Changes in one screen (like toggling the visited status) are immediately reflected on the other screen.
+
+## Fun Feature
+
+### Image Viewer on HomeScreen
+
+- An image viewer on the `HomeScreen` displays images from the API or a local JSON file.
+- The images change every 5 seconds.
+- When a user clicks on an image, they are redirected to the `ItemDetailsScreen` to view more information about the item.
+
+### Random Image Selection with `useEffect`
+
+The following `useEffect` hook is responsible for selecting a random image from the `items` array every 5 seconds:
+
+```javascript
+useEffect(() => {
+  const changeRandomPlace = () => {
+    if (items.length > 0) {
+      const randomIndex = Math.floor(Math.random() * items.length);
+      setRandomPlace(items[randomIndex]);
+    }
+  }; 
+
+  changeRandomPlace();
+
+  const interval = setInterval(changeRandomPlace, 5000); 
+
+  return () => clearInterval(interval);
+}, [items]);
+```
+### Navigation Handeller
+The following handeller is used for navigation
+```javascript
+ const handleImageClick = () => {
+ if (randomPlace) {
+ navigation.navigate('ItemDetails', { item: randomPlace });
+ }
+ };
+ ```
+### Finally to show the imageViewer
+```javascript
+ {randomPlace && (
+ <TouchableOpacity onPress={handleImageClick} style={styles.imageContainer}>
+ <Image
+ source={{ uri: randomPlace.imageLink }}
+ style={styles.image}
+ resizeMode="cover"
+ />
+ </TouchableOpacity>
+ )}
+```
+# Routes and Navigation
+
+## 1. Navigation Between Screens
+
+- Tap on an item in the list to view its details on the `ItemDetailsScreen`.
+- Users can navigate back to the `HomeScreen` while retaining the correct state of the data.
+
+## 2. Direct Navigation (Deep Linking)
+
+The following `linking` configuration ensures Deep Linking functionality for the `Home`, `Suggestion`, and `Not-Visited` screens. It allows users to navigate directly to specific screens via URLs.
+
+```javascript
+const linking = {
+  prefixes: ['myapp://'],
+  config: {
+    screens: {
+      Home: {
+        screens: {
+          HomeScreen: 'home',
+          ItemDetails: 'item/:id',
+        },
+      },
+      Suggestion: {
+        screens: {
+          SuggestionScreen: 'suggestion',
+          ItemDetails: 'item/:id',
+        },
+      },
+      NotVisited: 'not-visited',
+      Settings: 'settings',
+    },
+  },
+};
+```
+## 3. Navigation Behavior After Marking a Place
+- After marking or unmarking a place on either the `HomeScreen` or `SuggestionScreen`, the state change is preserved across all screens.
+- Since the same `places.json` file is used for both the `HomeScreen` and `SuggestionScreen`, any update to the visited status of a place will be reflected in both screens.
+- This behaviour demonstrates how Redux state management ensures that changes are consistent across different screens of the app.
+## 4. Redux State Management Integration
+The navigation logic is tightly integrated with Redux state management, ensuring that the visited status of places is maintained consistently across screens. The same data is shared and updated across `HomeScreen` and `SuggestionScreen`, demonstrating the power of Redux in managing global state.
