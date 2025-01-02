@@ -213,3 +213,7 @@ const linking = {
 - This behaviour demonstrates how Redux state management ensures that changes are consistent across different screens of the app.
 ## 4. Redux State Management Integration
 The navigation logic is tightly integrated with Redux state management, ensuring that the visited status of places is maintained consistently across screens. The same data is shared and updated across `HomeScreen` and `SuggestionScreen`, demonstrating the power of Redux in managing global state.
+
+## Testing
+- Use `Jest` for unit test cases for `@testing-library/react-native`
+- `redux-mock-store` Used for writing mock test
