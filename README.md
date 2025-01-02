@@ -56,7 +56,7 @@ export const fetchPlaces = createAsyncThunk('places/fetchPlaces', async () => {
     return placesData; // Fallback to local JSON
   }
 });
-```javascript
+```
 
 2. Each place is displayed with its name, image, and description.
 
