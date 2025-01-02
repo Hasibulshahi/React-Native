@@ -56,3 +56,55 @@ export const fetchPlaces = createAsyncThunk('places/fetchPlaces', async () => {
     return placesData; // Fallback to local JSON
   }
 });
+
+2. Each place is displayed with its name, image, and description.
+
+# Visited Places Functionality
+
+## Overview
+
+The "Visited Places" feature allows users to mark places as visited or unvisited with immediate UI reflection. This functionality is implemented using Redux for global state management, ensuring the visited/unvisited state persists across different screens of the app.
+
+## Features
+
+- **Home Screen Toggle**: 
+  - A toggle button on the HomeScreen allows users to mark places as visited or unvisited.
+  - The UI updates instantly after toggling a place's state, and clicking on an item will show the details with the toggle's updated state.
+  
+- **Unvisited Toggle**: 
+  - The same process applies when a place is unmarked as visited.
+
+- **State Management with Redux**:
+  - Redux manages the global state for places and their visited/unvisited status using React hooks.
+
+## How Redux Works Here
+
+### 1. Overview of Redux Flow
+- **State Management**: Redux manages the global state of places and their properties, including the `visited` status.
+- **Action Dispatching**: Actions like `fetchPlaces` and `toggleVisited` update the state accordingly.
+- **Reducers**: Reducers handle the transformation of state based on dispatched actions.
+- **Selectors**: Components access specific slices of the state.
+- **Persistence Across Screens**: Redux ensures consistency and avoids redundant API calls, maintaining the visited state across the app.
+
+### 2. Key Redux Components
+
+#### a. Redux Slice (`placesSlice.js`)
+- Manages the `items` array and updates the state of visited/unvisited places.
+
+#### b. Redux Store (`store.js`)
+- Configures the Redux store to handle the application's state.
+
+#### c. Action Usage in Components
+
+- **Dispatching Action in Components**:
+  In the `HomeScreen` and `SuggestionScreen`, Redux actions are dispatched to load the data:
+  ```javascript
+  const dispatch = useDispatch();
+  const items = useSelector((state) => state.places.items);
+
+  useEffect(() => {
+    if (items.length === 0) {
+      dispatch(fetchPlaces());
+    }
+  }, [dispatch, items]);
+
