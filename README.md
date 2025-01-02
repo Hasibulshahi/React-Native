@@ -109,21 +109,20 @@ The "Visited Places" feature allows users to mark places as visited or unvisited
     }
   }, [dispatch, items]);
 ```
-### How Redux Works Together
+```
+
+# How Redux Works Together
 
 ## Data Fetching
-
-- `fetchPlaces` is dispatched when the `items` array is empty.
-- The `items` state is populated with data fetched from the API response.
+- The `fetchPlaces` action is dispatched when the `items` array is empty.
+- The state of `items` is populated with data retrieved from the API response.
 
 ## State Updates
-
-- The `toggleVisited` action updates the `visited` property of a specific place in the `items` array.
+- The `toggleVisited` action updates the `visited` property of a specific place within the `items` array.
 
 ## Cross-Screen Consistency
-
-- Both `HomeScreen` and `SuggestionScreen` read from the same Redux state.
-- Changes in one screen (like toggling the visited status) are immediately reflected on the other screen.
+- Both `HomeScreen` and `SuggestionScreen` access the same Redux state for consistency.
+- Any changes made in one screen (e.g., toggling the `visited` status) are instantly reflected on the other screen.
 
 ## Fun Feature
 
@@ -152,7 +151,7 @@ useEffect(() => {
 
   return () => clearInterval(interval);
 }, [items]);
-```
+
 ### Navigation Handeller
 The following handeller is used for navigation
 ```javascript
