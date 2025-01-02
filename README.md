@@ -109,7 +109,7 @@ The "Visited Places" feature allows users to mark places as visited or unvisited
     }
   }, [dispatch, items]);
 ```
-# How Redux Works Together
+### How Redux Works Together
 
 ## Data Fetching
 
