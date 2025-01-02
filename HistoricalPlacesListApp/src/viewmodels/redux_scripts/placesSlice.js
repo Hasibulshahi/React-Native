@@ -10,7 +10,6 @@ export const fetchPlaces = createAsyncThunk('places/fetchPlaces', async () => {
     const data = await response.json();
     return data;
   } catch (error) {
-    // console.error('Error fetching places:', error);
     return placesData; // Fallback to local JSON
   }
 });
