@@ -1,3 +1,13 @@
+# Features
+
+- **Data Management**: Fetch and display historical places with details (name, image, description).
+- **Visited Places**: Mark/unmark places as visited with real-time UI updates.
+- **Interactive Feature**: Suggest random historical places for user exploration.
+- **Navigation**: Smooth transitions between screens and support for deep-linking.
+- **UI/UX Consistency**: Cohesive design across all screens for an intuitive user experience.
+- **Cross-Platform Compatibility**: Fully functional on both iOS and Android.
+- **State Management**: Robust handling with Redux and Redux-Observable for seamless performance.
+
 # Project Overview
 
 The project uses the React Native framework with a Redux architecture for state management. Here's how the architecture can be described:
@@ -217,3 +227,7 @@ The navigation logic is tightly integrated with Redux state management, ensuring
 ## Testing
 - Use `Jest` for unit test cases for `@testing-library/react-native`
 - `redux-mock-store` Used for writing mock test
+
+## Challenges
+- Implementing the Redux for state management from `useState` React Hook
+- Implementing unit test cases as the project version and the test lib versions are conflicting.
