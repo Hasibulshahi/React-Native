@@ -1,7 +1,7 @@
 // __tests__/ItemDetailsScreen.test.js
 import React from 'react';
 import { render } from '@testing-library/react-native';
-import { ItemDetailsScreen } from '../src/screens/ItemDetailsScreen';
+import { ItemDetailsScreen } from '../screens/ItemDetailsScreen';
 
 test('renders ItemDetailsScreen correctly', () => {
   const item = {

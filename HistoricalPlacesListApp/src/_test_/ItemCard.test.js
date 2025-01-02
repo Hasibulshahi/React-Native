@@ -1,7 +1,7 @@
 // __tests__/ItemCard.test.js
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react-native';
-import { ItemCard } from '../src/components/ItemCard';
+import { ItemCard } from '../components/ItemCard';
 import configureStore from 'redux-mock-store';
 import { Provider } from 'react-redux';
 

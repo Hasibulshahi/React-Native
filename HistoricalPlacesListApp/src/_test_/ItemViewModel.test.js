@@ -1,12 +1,12 @@
 // __tests__/useItemViewModel.test.js
 import { renderHook, act } from '@testing-library/react-hooks';
-import { useItemViewModel } from '../src/viewmodels/useItemViewModel';
+import { useItemViewModel } from '../viewmodels/ItemViewModel';
 import configureStore from 'redux-mock-store';
 import { Provider } from 'react-redux';
 
 const mockStore = configureStore([]);
 
-test('useItemViewModel fetches places and toggles visited', () => {
+test('ItemViewModel fetches places and toggles visited', () => {
   const store = mockStore({
     places: {
       items: [],
