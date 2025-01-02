@@ -10,8 +10,10 @@ export const SuggestionScreen = ({ navigation }) => {
   const { items, isLoading } = useSelector((state) => state.places);
 
   useEffect(() => {
-    dispatch(fetchPlaces());
-  }, [dispatch]);
+    if (items.length === 0) {
+      dispatch(fetchPlaces());
+    }
+  }, [dispatch, items]);
 
   if (isLoading) {
     return <Text style={styles.loadingText}>Loading...</Text>;

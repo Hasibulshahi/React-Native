@@ -2,7 +2,7 @@ import React from 'react';
 import { View, FlatList, StyleSheet, Text, ActivityIndicator, TouchableOpacity } from 'react-native';
 import { ItemCard } from '../components/ItemCard';
 
-export const ItemListView = ({ navigation, items }) => {
+export const SuggestionItemListView = ({ navigation, items }) => {
   if (!items || items.length === 0) {
     return <Text style={styles.emptyText}>No places available.</Text>;
   }

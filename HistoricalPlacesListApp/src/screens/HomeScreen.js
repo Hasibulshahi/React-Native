@@ -11,7 +11,7 @@ export const HomeScreen = ({ navigation }) => {
 
   useEffect(() => {
     if (items.length === 0) {
-      dispatch(fetchPlaces()); // Only fetch if items are not available in Redux state
+      dispatch(fetchPlaces());
     }
   }, [dispatch, items]);
 
