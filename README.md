@@ -227,3 +227,7 @@ The navigation logic is tightly integrated with Redux state management, ensuring
 ## Testing
 - Use `Jest` for unit test cases for `@testing-library/react-native`
 - `redux-mock-store` Used for writing mock test
+
+## Challenges
+- Implementing the Redux for state management from `useState` React Hook
+- Implementing unit test cases as the project version and the test lib versions are conflicting.
