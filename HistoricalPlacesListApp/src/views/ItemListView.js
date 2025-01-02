@@ -1,39 +1,32 @@
 import React from 'react';
-import { View, FlatList, StyleSheet, Text, ActivityIndicator, TouchableOpacity } from 'react-native';
-import { ItemCard } from '../components/ItemCard'; 
-import { useItemViewModel } from '../viewmodels/ItemViewModel';
+import { FlatList, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { ItemCard } from '../components/ItemCard';
 
-export const ItemListView = ({ navigation }) => {
-  const { items, isLoading, toggleVisited } = useItemViewModel();
-
-  if (isLoading) {
-    return (
-      <View style={styles.loader}>
-        <ActivityIndicator size="large" color="#0000ff" />
-        <Text>Loading...</Text>
-      </View>
-    );
+export const ItemListView = ({ navigation, items }) => {
+  if (!items || items.length === 0) {
+    return <Text style={styles.emptyText}>No places available.</Text>;
   }
 
   return (
     <FlatList
       data={items}
-      keyExtractor={(item) => item.id.toString()}
       renderItem={({ item }) => (
         <TouchableOpacity
           onPress={() => navigation.navigate('ItemDetails', { item })}
         >
-          <ItemCard item={item} onToggleVisited={toggleVisited} />
-        </TouchableOpacity>
+          <ItemCard item={item} onToggleVisited={(id, visited) => console.log(id, visited)} />
+        </TouchableOpacity>        
       )}
+      keyExtractor={(item) => item.id.toString()}
     />
   );
 };
 
 const styles = StyleSheet.create({
-  loader: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+  emptyText: {
+    textAlign: 'center',
+    marginTop: 20,
+    fontSize: 16,
+    color: '#888',
   },
 });

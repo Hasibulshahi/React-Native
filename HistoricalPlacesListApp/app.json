@@ -16,13 +16,13 @@
     },
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.yourapp"
+      "bundleIdentifier": "com.historicalplaceslistapp"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff",
-        "package": "com.yourapp"
+        "package": "com.historicalplaceslistapp"
       }
     },
     "web": {

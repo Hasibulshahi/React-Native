@@ -1,18 +1,22 @@
 import React from 'react';
 import { View, Text, StyleSheet, Switch, Image } from 'react-native';
+import { useDispatch } from 'react-redux';
+import { toggleVisited } from '../viewmodels/redux_scripts/placesSlice';
 
-export const ItemCard = ({ item, onToggleVisited }) => {
+export const ItemCard = ({ item }) => {
+  const dispatch = useDispatch();
+
   const toggleSwitch = () => {
-    onToggleVisited(item.id, !item.visited);
+    dispatch(toggleVisited({ id: item.id, visited: !item.visited }));
   };
 
   return (
     <View style={styles.card}>
       <View style={styles.imageContainer}>
-        <Image 
-          source={{ uri: item.imageLink }} 
-          style={styles.image} 
-          resizeMode="cover" 
+        <Image
+          source={{ uri: item.imageLink }}
+          style={styles.image}
+          resizeMode="cover"
         />
         <Text style={styles.title} numberOfLines={1}>
           {item.title}
@@ -51,8 +55,8 @@ const styles = StyleSheet.create({
     marginRight: 10,
   },
   image: {
-    width: 50, // Adjust the width as needed
-    height: 50, // Adjust the height as needed
+    width: 50,
+    height: 50,
     borderRadius: 4,
   },
   title: {
